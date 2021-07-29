@@ -11,6 +11,13 @@ pipeline{
                 sh "mvn clean package"
             }
         }
+        stage('SonarAnalysis') {
+            steps {
+                withSonarQubeENV('sonarqube_mine') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
        stage("deploy in tomcat"){
             steps{
                 sshagent(['jenkins_declarative']) {
