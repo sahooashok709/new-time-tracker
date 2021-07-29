@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("git checkout"){
             steps{
-              git 'https://github.com/sahooashok709/time-tracker.git'
+              git branch: 'master' url: 'https://github.com/sahooashok709/new-time-tracker.git'
             }
         }
         stage("build in maven"){
@@ -11,7 +11,7 @@ pipeline{
                 sh "mvn clean package"
             }
         }
-       /* stage("deploy in tomcat"){
+       stage("deploy in tomcat"){
             steps{
                 sshagent(['jenkins_declarative']) {
                 sh """
@@ -22,6 +22,6 @@ pipeline{
                 }
             }
         } 
-      */
+      
     }
 }
